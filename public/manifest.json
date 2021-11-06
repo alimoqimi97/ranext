@@ -1,12 +1,6 @@
 {
-    "theme_color": "#f69435",
-    "background_color": "#f69435",
-    "display": "standalone",
-    "scope": "/",
-    "start_url": "/",
-    "name": "next PWA",
-    "short_name": "PWA",
-    "description": "this is ranext pwa app",
+    "name": "sama control pwa",
+    "short_name": "sama pwa",
     "icons": [
         {
             "src": "/icon-192x192.png",
@@ -28,5 +22,11 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ]
+    ],
+    "theme_color": "#268085",
+    "background_color": "#35d1f6",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "description": "this is sama control pwa"
 }
