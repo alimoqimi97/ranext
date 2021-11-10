@@ -112,12 +112,19 @@ export const UsersList = props => {
     };
 
     useMqtt({
-        uri: process.env.NEXT_PUBLIC_MQTT_URI,
+        uri: 'wss://samacontrol.ir/mqtt',
         options: {
-            username: process.env.NEXT_PUBLIC_MQTT_USERNAME,
-            password: process.env.NEXT_PUBLIC_MQTT_PASSWORD,
-            clientId: process.env.NEXT_PUBLIC_MQTT_CLIENTID,
+            username: '',
+            password: '',
+            clientId: 'rayan',
         },
+
+        // uri: process.env.NEXT_PUBLIC_MQTT_URI,
+        // options: {
+        //     username: process.env.NEXT_PUBLIC_MQTT_USERNAME,
+        //     password: process.env.NEXT_PUBLIC_MQTT_PASSWORD,
+        //     clientId: process.env.NEXT_PUBLIC_MQTT_CLIENTID,
+        // },
         topicHandlers: incommingMessageHandlers.current,
         onConnectedHandler: (client) => setMqttClient(client)
     });
