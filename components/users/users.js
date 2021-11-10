@@ -127,7 +127,7 @@ export const UsersList = props => {
     // });
 
 
-    console.log(JSON.parse(JSON.stringify(incommingMessages));
+    console.log(JSON.parse(JSON.stringify(incommingMessages)));
     console.log(JSON.parse(incommingMessages[0]));
 
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
