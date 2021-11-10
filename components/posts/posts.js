@@ -10,9 +10,9 @@ export const PostList = props => {
         <List {...props}>
             {isSmall ? (
                 <SimpleList
-                    primaryText={record => record.title}
-                    secondaryText={record => `${record.views} views`}
-                    tertiaryText={record => record.id}
+                    primaryText={record => record.id}
+                    secondaryText={record => record.title}
+                    // tertiaryText={record => record.body}
                 />
             ) : (
             <Datagrid rowClick="edit">
