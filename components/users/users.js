@@ -99,7 +99,7 @@ export const UsersList = props => {
 
     const incommingMessageHandlers = useRef([
         {
-            topic: 'Object/#',
+            topic: 'Object/56/#',
             handler: (msg) => {
                 addMessage(msg);
             },
@@ -126,7 +126,8 @@ export const UsersList = props => {
     //     return ({message: msg});
     // });
 
-
+    // console.log(`incommingMessages length = ${incommingMessages.length}`);
+    console.log(`incommingMessages[last] = ${incommingMessages[incommingMessages.length - 1]}`);
 
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
 

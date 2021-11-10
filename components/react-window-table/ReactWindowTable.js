@@ -9,23 +9,36 @@ import { FixedSizeList  as List } from 'react-window';
 
 
 const MqttList = ({listCount, contentArray}) => {
+    
+    let tmpArr = [...contentArray];
 
-    const reversedContent = contentArray.reverse();
 
-    for(let indx = 0 ;indx < 10 ; indx++){
-        console.log('reversedContent[' + indx + ']: ');
-        console.log(reversedContent[indx]);
+    let reversedContent = tmpArr.reverse();
+
+
+    let caLength = contentArray.length;
+
+    // console.log(`length of contentArray = ${contentArray.length}`);
+
+    // console.log(`contnetArray[last] = ${contentArray[contentArray.length - 1]}`);
+    // console.log(`reversedContent[0] = ${reversedContent[0]}`);
+
+
+    // first ten elements of contentArray must be equal of last ten elements of reversedContent.
+    for(let i = contentArray.length - 1 ; i > contentArray.length - 11 ; i--){
+
+        console.log(`contentArray[${i}] = ${contentArray[i]}`);
     }
 
-    for(let i = 0 ; i < 10 ; i++){
-        console.log('contentArray[' + i + ']: ');
-        console.log(contentArray[i]);
+    for(let j = 0 ; j < 10 ; j++){
+        // console.log(`contentArray[${contentArray.length - j}] = ${contentArray[j]}`);
+        console.log(`reversedContent[${j}] = ${reversedContent[j]}`);
     }
+
 
 
 
     const Row = ({ index, style }) => {
-        // console.log(reversedContent[index]);
         return (
             <div style={style}>{ reversedContent[index] }</div>
         );
