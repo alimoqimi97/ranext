@@ -25,7 +25,12 @@ export default function BasicTable({ rows }) {
 
   // console.log( JSON.parse( rows[1]).ID_object);
 
-  console.log(typeof(rows));
+  console.log(typeof(rows[1]));
+  console.log(rows[1]);
+
+  if(rows[1] !== undefined){
+    console.log(JSON.parse(rows[1].ID_object));
+  }
 
 
   const Row = ({ index, style }) => {

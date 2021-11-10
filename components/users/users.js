@@ -86,7 +86,7 @@ export const UsersList = props => {
 
     const [incommingMessages, setIncommingMessages] = useState([]);
     const addMessage = (message) => {
-        console.log(message);
+        // console.log(message);
         setIncommingMessages((incommingMessages) => [...incommingMessages, message]);
 
         // console.log('incommingMessages: ');
@@ -127,8 +127,6 @@ export const UsersList = props => {
     // });
 
 
-    console.log(JSON.parse(JSON.stringify(incommingMessages)));
-    console.log(JSON.parse(incommingMessages[0]));
 
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
 
@@ -136,10 +134,10 @@ export const UsersList = props => {
     return (
         <div>
 
-            {/* <MqttList listCount={incommingMessages.length} contentArray={incommingMessages} /> */}
+            <MqttList  contentArray={incommingMessages} />
 
 
-            <BasicTable rows={incommingMessages} />
+            {/* <BasicTable rows={incommingMessages} /> */}
 
 
 
