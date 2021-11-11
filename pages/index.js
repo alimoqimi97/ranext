@@ -56,6 +56,7 @@ export default function Home() {
         <title>Create Next App</title>
         <meta name="description" content="SamaControl PWA" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="manifest" href="../public/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <RA />
