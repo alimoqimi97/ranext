@@ -48,10 +48,18 @@ export default function Home() {
   //   onConnectedHandler: (client) => setMqttClient(client),
   // });
 
-  
+
 
   return (
-    <RA />
+    <div>
+      <Head>
+        <title>Create Next App</title>
+        <meta name="description" content="SamaControl PWA" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <RA />
+    </div>
   );
 
   // return (
@@ -65,13 +73,13 @@ export default function Home() {
   //     <main className={styles.main}>
   //       <h1 className={styles.title}>
   //         Welcome to <a href="https://nextjs.org">Next.js!</a>
-        
+
   //         <p>happy learning...</p>
   //         See {' '}
   //         <Link href='/dashboard/react-admin-dashboard'>
   //           <a>this page</a>
   //         </Link>
-          
+
   //       </h1>
 
   //       <p className={styles.description}>
