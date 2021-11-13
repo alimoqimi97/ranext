@@ -3,53 +3,19 @@ import { Admin, Resource, ListGuesser } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import { UsersList } from '../users/users.js';
 import { PostList } from "../posts/posts.js";
+import authProvider from '../../pages/Auth.js';
+import PostIcon from '@material-ui/icons/Book';
+import UserIcon from '@material-ui/icons/Group';
+import LoginPage from '../../components/LoginPage/LoginPage.jsx';
+import ImprovedLoginPage from '../../components/LoginPage/ImprovedLoginPage.js';
 
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
 
 const AdminDashboard = () => {
-
-    // const [incommingMessages, setIncommingMessages] = useState([]);
-    // const addMessage = (message) => {
-    //   setIncommingMessages((incommingMessages) => [...incommingMessages, message]);
-      
-    //   console.log('incommingMessages: ');
-    //   console.log(incommingMessages);
-    // }
-    // const clearMessages = () => {
-    //   setIncommingMessages(() => []);
-    // }
-  
-    // const incommingMessageHandlers = useRef([
-    //   {
-    //     topic: 'SERVER/#',
-    //     handler: (msg) => {
-    //       addMessage(msg);
-    //     },
-    //   },
-    // ]);
-  
-    // const mqttClientRef = useRef(null);
-    // const setMqttClient = (client) => {
-    //   mqttClientRef.current = client
-    // };
-  
-    // useMqtt({
-    //   uri: process.env.NEXT_PUBLIC_MQTT_URI,
-    //   options: {
-    //     username: process.env.NEXT_PUBLIC_MQTT_USERNAME,
-    //     password: process.env.NEXT_PUBLIC_MQTT_PASSWORD,
-    //     clientId: process.env.NEXT_PUBLIC_MQTT_CLIENTID,
-    //   },
-    //   topicHandlers: incommingMessageHandlers.current,
-    //   onConnectedHandler: (client) => setMqttClient(client),
-    // });
-  
-
-
     return (
-    <Admin dataProvider={dataProvider} >
-        <Resource name="users" list={UsersList} />
-        <Resource name="posts" list={PostList} />
+    <Admin loginPage={ImprovedLoginPage} dataProvider={dataProvider} authProvider={authProvider} >
+        <Resource name="users" list={UsersList} icon={UserIcon} />
+        <Resource name="posts" list={PostList} icon={PostIcon} />
         {/* <Resource name="posts" list={ListGuesser} /> */}
     </Admin>
     );
