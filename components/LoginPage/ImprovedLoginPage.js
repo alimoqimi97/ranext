@@ -16,6 +16,7 @@ import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import LockIcon from '@material-ui/icons/Lock';
 import { Notification, useTranslate, useLogin, useNotify } from 'react-admin';
+import Stack from '@mui/material/Stack';
 
 import { lightTheme } from './themes';
 
@@ -27,7 +28,6 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'flex-start',
         background: 'radial-gradient(circle,white,lightgreen,green)',
-        // background: 'url(https://source.unsplash.com/random/1600x900)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     },
@@ -41,7 +41,8 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
     icon: {
-        backgroundColor: theme.palette.secondary.main,
+        // backgroundColor: theme.palette.secondary.main,
+        // backgroundColor: theme.palette.success.main,
     },
     hint: {
         marginTop: '1em',
@@ -139,12 +140,12 @@ const Login = () => {
                     <div className={classes.main}>
                         <Card className={classes.card}>
                             <div className={classes.avatar}>
-                                <Avatar className={classes.icon}>
-                                    <LockIcon />
-                                </Avatar>
+                                <Avatar className={classes.icon} alt="samaControl icon" src="./samaLogo.png" />
+                                    {/* <LockIcon /> */}
+                                {/* </Avatar> */}
                             </div>
                             <div className={classes.hint}>
-                                Hint: demo / demo
+                                <span>ورود</span>
                             </div>
                             <div className={classes.form}>
                                 <div className={classes.input}>
@@ -154,6 +155,8 @@ const Login = () => {
                                         // @ts-ignore
                                         component={renderInput}
                                         label={translate('ra.auth.username')}
+                                        type="number"
+                                        placeholder="09xxxxxxxxx"
                                         disabled={loading}
                                     />
                                 </div>
@@ -172,7 +175,7 @@ const Login = () => {
                                 <Button
                                     variant="contained"
                                     type="submit"
-                                    color='primary'
+                                    color="success"
                                     disabled={loading}
                                     fullWidth
                                 >
