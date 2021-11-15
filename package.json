@@ -11,6 +11,7 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.1.0",
+    "jss-rtl": "^0.3.0",
     "mqtt": "^4.2.8",
     "next": "12.0.2",
     "next-pwa": "^5.4.0",
@@ -18,7 +19,9 @@
     "react": "17.0.2",
     "react-admin": "^3.19.0",
     "react-dom": "17.0.2",
-    "react-window": "^1.8.6"
+    "react-window": "^1.8.6",
+    "stylis": "^4.0.10",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.51",
