@@ -52,7 +52,8 @@ const useStyles = makeStyles(theme => ({
         marginTop: '1em',
         display: 'flex',
         justifyContent: 'center',
-        color: "#a21b2a9",
+        color: "#746e6a",
+        // color: "#5a5b47",
         // color: theme.palette.grey[500],
         fontFamily: 'IranYekan'
     },
@@ -165,11 +166,11 @@ const Login = () => {
                             <div className={classes.main}>
                                 <Card className={classes.card}>
                                     <div className={classes.avatar}>
-                                        <Avatar className={classes.icon} alt="samaControl icon" src="./sclogo.png" />
+                                        <Avatar className={classes.icon} alt="samaControl icon" src="./SCL.png" />
                                         {/* <LockIcon /> */}
                                         {/* </Avatar> */}
                                     </div>
-                                    <div className={`${classes.hint} ${styles.iranYekanFont}`}>
+                                    <div className={`${classes.hint} ${styles.iranYekanFont} ${styles.samaBold}`}>
                                         <span>سماکنترل</span>
                                     </div>
                                     <div className={classes.form}>
