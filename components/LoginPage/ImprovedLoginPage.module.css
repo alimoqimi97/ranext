@@ -19,3 +19,7 @@
 .MuiFormLabel-root{
     font-family: "IranYekan" !important;
 }
+
+.inputLtrDirection{
+    direction: ltr;
+}
