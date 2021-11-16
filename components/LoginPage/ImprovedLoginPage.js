@@ -75,6 +75,13 @@ const renderInput = ({
     <TextField
         error={!!(touched && error)}
         className={styles.iranYekanFont}
+        inputProps={{
+            className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold}`
+        }}
+        // sx={{
+        //     fontFamily: "IranYekan !important"
+        // }}
+        
         helperText={touched && error}
         {...inputProps}
         {...props}
@@ -166,7 +173,7 @@ const Login = () => {
                                         <span>سماکنترل</span>
                                     </div>
                                     <div className={classes.form}>
-                                        <div className={classes.input} dir="rtl">
+                                        <div className={`${classes.input} ${styles.iranYekanFont}`} dir="rtl">
                                             <Field
                                                 autoFocus
                                                 name="username"
@@ -191,7 +198,7 @@ const Login = () => {
                                             />
                                         </div>
                                     </div>
-                                    <CardActions className={classes.actions}>
+                                    <CardActions className={`${classes.actions} ${styles.iranYekanFont}`}>
                                         <SCLoginButton>
                                             ورود
                                         </SCLoginButton>

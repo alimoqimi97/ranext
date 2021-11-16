@@ -5,5 +5,17 @@
 }
 
 .iranYekanFont{
-    font-family: "IranYekan";
+    font-family: "IranYekan" !important;
+}
+
+.samaDirtyColor{
+    color: #5a5b47 !important;
+}
+
+.samaBold{
+    font-weight: 500 !important;
+}
+
+.MuiFormLabel-root{
+    font-family: "IranYekan" !important;
 }

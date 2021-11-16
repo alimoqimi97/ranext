@@ -11,14 +11,8 @@ const useStyles = makeStyles({
             backgroundColor: '#31a05f !important'
         },
         fontWeight: '1000',
-        fontFamily: "IranYekan",
+        fontFamily: "IranYekan !important",
     },
-    // samaControlBtn: {
-    //     backgroundColor: '#65bc69',
-    //     '&:hover': {
-    //         backgroundColor: '#31a05f'
-    //     }
-    // }
 });
 
 
