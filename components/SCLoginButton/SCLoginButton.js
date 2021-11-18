@@ -9,7 +9,7 @@ const useStyles = makeStyles({
         backgroundColor: '#65bc69 !important',
         '&:hover': {
             backgroundColor: '#31a05f !important'
-        },
+    },
         fontWeight: '1000',
         fontFamily: "IranYekan !important",
     },

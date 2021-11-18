@@ -23,3 +23,14 @@
 .inputLtrDirection{
     direction: ltr;
 }
+
+.txtFieldFocus{
+
+}
+.txtFieldFocus::after{
+    border-bottom: #31a05f !important;
+}
+
+ .MuiInput-underline:after{
+    border-bottom: #31a05f !important;
+ }

@@ -9,42 +9,42 @@ import UserIcon from '@material-ui/icons/Group';
 // import LoginPage from '../../components/LoginPage/LoginPage.jsx';
 import ImprovedLoginPage from '../../components/LoginPage/ImprovedLoginPage.js';
 
-// import { createTheme } from '@material-ui/core/styles';
-// import { create } from 'jss';
-// import rtl from 'jss-rtl';
-// import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-// // Configure JSS
-// const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+//      ----------under testing part-----------         //
+import { create } from "jss";
+import rtl from "jss-rtl";
+import {
+    StylesProvider,
+    jssPreset,
+    ThemeProvider,
+    createTheme
+} from "@material-ui/core/styles";
 
-// const theme = createTheme({
-//     direction: 'rtl',
-// });
+// configure jss.
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from "@material-ui/core";
-import { createTheme, ThemeProvider } from "@material-ui/core";
+// create rtl(right to left) theme.
+const rtlTheme = createTheme({ direction: "rtl" });
 
-// Configure JSS
-const jss = create({
-    plugins: [...jssPreset().plugins, rtl()],
-});
+//              -----------------------                 //
 
-const theme = createTheme({
-    direction: 'rtl',
-});
+
 
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
 
+//  Note: <StylesProvider /> component should not be in a component that has a state 
+//  that changes and trigger re-render for performance reasons. therefore we use it here
+//  and insert <ThemeProvider> component in <ImprovedLoginPage /> component
+
 const AdminDashboard = () => {
     return (
-        // <StylesProvider jss={jss}>
-        <Admin loginPage={ImprovedLoginPage} dataProvider={dataProvider} authProvider={authProvider} >
-            <Resource name="users" list={UsersList} icon={UserIcon} />
-            <Resource name="posts" list={PostList} icon={PostIcon} />
-        </Admin>
-        // </StylesProvider>
+        <StylesProvider jss={jss}>
+            <Admin loginPage={ImprovedLoginPage} dataProvider={dataProvider} authProvider={authProvider} >
+                <Resource name="users" list={UsersList} icon={UserIcon} />
+                <Resource name="posts" list={PostList} icon={PostIcon} />
+            </Admin>
+        </StylesProvider>
+
     );
 };
 

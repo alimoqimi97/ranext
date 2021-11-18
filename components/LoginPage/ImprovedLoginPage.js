@@ -22,25 +22,18 @@ import SCLoginButton from '../SCLoginButton/SCLoginButton.js';
 
 import { lightTheme } from './themes';
 
-
-//      -------under testing part----------     //
+//      rtl imports and configurations.     //
 import { create } from "jss";
 import rtl from "jss-rtl";
 import {
-  StylesProvider,
-  jssPreset,
-  ThemeProvider,
-//   createTheme
+    StylesProvider,
+    jssPreset,
+    ThemeProvider,
+    //   createTheme
 } from "@material-ui/core/styles";
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const rtlTheme = createTheme({ direction: "rtl" });
-
-//      ------------------------------          //
-
-
-
-
 
 const useStyles = makeStyles(theme => ({
     main: {
@@ -84,25 +77,57 @@ const useStyles = makeStyles(theme => ({
     actions: {
         padding: '0 1em 1em 1em',
     },
+    textField: {
+        '&:focus': {
+            color: "#31a05f",
+        }
+    }
 }));
 
-const renderInput = ({
-    meta: { touched, error } = { touched: false, error: undefined },
-    input: { ...inputProps },
-    ...props
-}) => (
-    <TextField
-        error={!!(touched && error)}
-        className={styles.iranYekanFont}
-        inputProps={{
-            className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection}`
-        }}
-        helperText={touched && error}
-        {...inputProps}
-        {...props}
-        fullWidth
-    />
-);
+const stls = makeStyles({
+    underline: {
+        '&:before': {
+            borderBottomColor: "orange",
+        },
+        '&:after':{
+            borderBottomColor: "yellow",
+        },
+        '&:hover:before':{
+            borderBottomColor: ["purple","!important"],
+        },
+    },
+});
+
+const renderInput = ({ meta: { touched, error } = { touched: false, error: undefined }, input: { ...inputProps }, ...props }) => {
+
+    const classes = stls();
+    return (
+        <TextField
+            error={!!(touched && error)}
+            className={`${styles.iranYekanFont} ${styles.txtFieldFocus}`}
+            // classes= {{underline: classes.underline}}
+
+            // inputProps={{
+                // className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection} `,
+                // pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
+            // }}
+
+            style={{
+                borderColor: "green",
+            }}
+
+            // helperText={touched && error}
+            // helperText={touched && errorMessage}
+
+            {...inputProps}
+            {...props}
+            fullWidth
+        />
+    );
+};
+
+
+
 
 const { Form } = withTypes();
 
@@ -114,8 +139,21 @@ const Login = () => {
     const login = useLogin();
     const location = useLocation();
 
+    let phoneNumber = '';
+    let password = '';
+    let errorMessage = {
+        phoneNumber: '',
+        password: ''
+    };
+
     const handleSubmit = (auth) => {
         setLoading(true);
+
+        let pattern = /(0|\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/ ;
+
+        if(!pattern.test(phoneNumber)){
+            errorMessage.phoneNumber = 'فرمت شماره تلفن وارد شده صحیح نمی باشد!';
+        }
 
         login().catch(() => {
             notify('an error occured in authenticating in improvedloginpage.js file');
@@ -148,14 +186,20 @@ const Login = () => {
 
     const validate = (values) => {
         const errors = {};
-        if (!values.username) {
-            // errors.uername = 'الزامی';
-            errors.username = translate('ra.validation.required');
+        
+        if(values.username !== undefined){
+            phoneNumber = values.username;
+            password = values.password;
         }
-        if (!values.password) {
-            console.log(translate('ra.validation.required'));
 
-            errors.password = translate('ra.validation.required');
+        if (!values.username ) {
+            // errors.username = translate('ra.validation.required');
+            errors.username = errorMessage.phoneNumber;
+        }
+
+        if (!values.password) {
+            // errors.password = translate('ra.validation.required');
+            errors.password = errorMessage.password;
         }
         return errors;
     };
@@ -166,7 +210,7 @@ const Login = () => {
             validate={validate}
             render={({ handleSubmit }) => (
                 <>
-                    <form onSubmit={handleSubmit} noValidate>
+                    <form onSubmit={handleSubmit} >
                         <div className={classes.main}>
                             <Card className={classes.card}>
                                 <div className={classes.avatar}>
@@ -178,28 +222,43 @@ const Login = () => {
                                     <span>سماکنترل</span>
                                 </div>
                                 <div className={classes.form}>
-                                    <div className={`${classes.input} ${styles.iranYekanFont}`} dir="rtl">
+                                    <div className={`${classes.input} ${styles.iranYekanFont}`} >
                                         <Field
-                                            autoFocus
+                                            // autoFocus
                                             name="username"
                                             // @ts-ignore
                                             component={renderInput}
-                                            label="نام کاربری"
+                                            label="شماره تلفن همراه"
+                                            // type="tel"
+                                            maxLength={11}
+                                            inputRef={(c) => {
+                                                c.setAttribute("setCustomValidity", ` 'Confirm email does not match'`)
+                                            }}
+
+                                            type="tel"
+                                            pattern="(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}"
+                                            inputProps={{
+                                                className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection} `,
+                                                pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
+                                                lang: "fa",
+                                            }}
+
                                             // label={translate('ra.auth.username')}
-                                            type="number"
-                                            placeholder="شماره تلفن همراه"
+                                            
                                             disabled={loading}
                                         />
                                     </div>
-                                    <div className={classes.input} dir="rtl">
+                                    <div className={classes.input} >
                                         <Field
                                             name="password"
                                             // @ts-ignore
                                             component={renderInput}
                                             label="رمزعبور"
+                                            inputProps={{
+                                                className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection} `,
+                                            }}
                                             // label={translate('ra.auth.password')}
                                             type="password"
-                                            placeholder="رمز عبور"
                                             disabled={loading}
                                         />
                                     </div>
@@ -246,11 +305,15 @@ Login.propTypes = {
 // the right theme
 const LoginWithTheme = (props) => (
     // <ThemeProvider theme={createTheme(lightTheme)}>
+
     <ThemeProvider theme={rtlTheme}>
-        <StylesProvider jss={jss}>
+
         <Login {...props} />
-        </StylesProvider>
+
     </ThemeProvider>
+
+    //   </ThemeProvider>
+
 );
 
 export default LoginWithTheme;

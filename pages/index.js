@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import ImprovedLoginPage from '../components/LoginPage/ImprovedLoginPage.js';
 
 const RA = dynamic(() => import('../components/admin-dashboard/AdminDashboard.js'), {
   ssr: false,
@@ -12,51 +13,19 @@ const RA = dynamic(() => import('../components/admin-dashboard/AdminDashboard.js
 
 export default function Home() {
 
-  // const [incommingMessages, setIncommingMessages] = useState([]);
-  // const addMessage = (message) => {
-  //   setIncommingMessages((incommingMessages) => [...incommingMessages, message]);
-
-  //   console.log('incommingMessages: ');
-  //   console.log(incommingMessages);
-  // }
-  // const clearMessages = () => {
-  //   setIncommingMessages(() => []);
-  // }
-
-  // const incommingMessageHandlers = useRef([
-  //   {
-  //     topic: 'SERVER/#',
-  //     handler: (msg) => {
-  //       addMessage(msg);
-  //     },
-  //   },
-  // ]);
-
-  // const mqttClientRef = useRef(null);
-  // const setMqttClient = (client) => {
-  //   mqttClientRef.current = client
-  // };
-
-  // useMqtt({
-  //   uri: process.env.NEXT_PUBLIC_MQTT_URI,
-  //   options: {
-  //     username: process.env.NEXT_PUBLIC_MQTT_USERNAME,
-  //     password: process.env.NEXT_PUBLIC_MQTT_PASSWORD,
-  //     clientId: process.env.NEXT_PUBLIC_MQTT_CLIENTID,
-  //   },
-  //   topicHandlers: incommingMessageHandlers.current,
-  //   onConnectedHandler: (client) => setMqttClient(client),
-  // });
 
 
 
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
+    <div lang="fa">
+      <Head dir="rtl" lang="fa">
+        {/* <meta charset="utf-8"/> */}
+        <meta content="text/html; charset=utf-8" httpEquiv="Content-Type" />
+        <title>سماکنترل</title>
         <meta name="description" content="SamaControl PWA" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <link rel="manifest" href="../public/manifest.json" />
+        {/* <meta charset="utf-8" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <RA />
