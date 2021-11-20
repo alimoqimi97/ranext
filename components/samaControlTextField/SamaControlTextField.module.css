@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "IranYekan";
+    src: url("../../public/iran.woff") format('woff') ;
+}
+
+.iranYekanFont{
+    font-family: "IranYekan" !important;
+}
+
+
+.txtFieldFocus::after{
+    border-bottom: #31a05f !important;
+}

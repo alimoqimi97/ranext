@@ -145,10 +145,6 @@ const Login = () => {
     let phoneNumber = '';
     let password = '';
     let phoneNumberInpRef = null;
-    let errorMessage = {
-        phoneNumber: '',
-        password: ''
-    };
 
     const handleSubmit = (auth) => {
         setLoading(true);
@@ -187,11 +183,11 @@ const Login = () => {
         const errors = {};
         
         if (!values.username ) {
-            // errors.username = translate('ra.validation.required');
+            errors.username = translate('ra.validation.required');
         }
 
         if (!values.password) {
-            // errors.password = translate('ra.validation.required');
+            errors.password = translate('ra.validation.required');
         }
         return errors;
     };
@@ -223,14 +219,16 @@ const Login = () => {
                                             label="شماره تلفن همراه"
                                             maxLength={11}
                                             type="tel"
-                                            pattern="(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}"
+                                            // pattern="(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}"
                                             inputProps={{
                                                 className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection} `,
                                                 pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
                                                 onInvalid: (event) => {
-                                                    event.target.setCustomValidity('فرمت شماره ی وارد شده صحیح نمی باشد!');
+                                                   event.target.setCustomValidity('فرمت شماره ی وارد شده صحیح نمی باشد!');
+                                                //     event.target.setAttribute('customValidity',resetPhoneErrMessage ? 'فرمت شماره ی واردشده صحیح نمی باشد!' : '')
                                                 },
                                                 onChange: (event) => {
+                                                    // phoneNumberInpRef = event.target;
                                                     event.target.setCustomValidity('');
                                                 }
                                             }}
