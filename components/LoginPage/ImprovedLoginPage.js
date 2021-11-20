@@ -32,6 +32,9 @@ import {
     //   createTheme
 } from "@material-ui/core/styles";
 
+import SamaControlTextField from '../samaControlTextField/SamaControlTextField.js';
+
+
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const rtlTheme = createTheme({ direction: "rtl" });
 
@@ -84,45 +87,45 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const stls = makeStyles({
-    underline: {
-        '&:before': {
-            borderBottomColor: "orange",
-        },
-        '&:after':{
-            borderBottomColor: "yellow",
-        },
-        '&:hover:before':{
-            borderBottomColor: ["purple","!important"],
-        },
-    },
-});
+// const stls = makeStyles({
+//     underline: {
+//         '&:before': {
+//             borderBottomColor: "orange",
+//         },
+//         '&:after':{
+//             borderBottomColor: "yellow",
+//         },
+//         '&:hover:before':{
+//             borderBottomColor: ["purple","!important"],
+//         },
+//     },
+// });
+
+
 
 const renderInput = ({ meta: { touched, error } = { touched: false, error: undefined }, input: { ...inputProps }, ...props }) => {
 
-    const classes = stls();
+    // const clss = stl;
+
     return (
-        <TextField
-            error={!!(touched && error)}
-            className={`${styles.iranYekanFont} ${styles.txtFieldFocus}`}
-            // classes= {{underline: classes.underline}}
-
-            // inputProps={{
-                // className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection} `,
-                // pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
-            // }}
-
-            style={{
-                borderColor: "green",
-            }}
-
-            // helperText={touched && error}
-            // helperText={touched && errorMessage}
-
+        <SamaControlTextField
+            err={!!(touched && error)}
+            hlpTxt={touched && error}
+            tch={touched}
             {...inputProps}
             {...props}
-            fullWidth
-        />
+         />
+        // <TextField
+        //     error={!!(touched && error)}
+        //     className={`${styles.iranYekanFont} ${styles.txtFieldFocus}`}
+
+        //     helperText={touched && error}
+        //     // inputProps={{clss}}
+
+        //     {...inputProps}
+        //     {...props}
+        //     fullWidth
+        // />
     );
 };
 
@@ -141,6 +144,7 @@ const Login = () => {
 
     let phoneNumber = '';
     let password = '';
+    let phoneNumberInpRef = null;
     let errorMessage = {
         phoneNumber: '',
         password: ''
@@ -148,12 +152,6 @@ const Login = () => {
 
     const handleSubmit = (auth) => {
         setLoading(true);
-
-        let pattern = /(0|\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/ ;
-
-        if(!pattern.test(phoneNumber)){
-            errorMessage.phoneNumber = 'فرمت شماره تلفن وارد شده صحیح نمی باشد!';
-        }
 
         login().catch(() => {
             notify('an error occured in authenticating in improvedloginpage.js file');
@@ -184,22 +182,16 @@ const Login = () => {
         // );
     };
 
+
     const validate = (values) => {
         const errors = {};
         
-        if(values.username !== undefined){
-            phoneNumber = values.username;
-            password = values.password;
-        }
-
         if (!values.username ) {
             // errors.username = translate('ra.validation.required');
-            errors.username = errorMessage.phoneNumber;
         }
 
         if (!values.password) {
             // errors.password = translate('ra.validation.required');
-            errors.password = errorMessage.password;
         }
         return errors;
     };
@@ -229,18 +221,18 @@ const Login = () => {
                                             // @ts-ignore
                                             component={renderInput}
                                             label="شماره تلفن همراه"
-                                            // type="tel"
                                             maxLength={11}
-                                            inputRef={(c) => {
-                                                c.setAttribute("setCustomValidity", ` 'Confirm email does not match'`)
-                                            }}
-
                                             type="tel"
                                             pattern="(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}"
                                             inputProps={{
                                                 className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection} `,
                                                 pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
-                                                lang: "fa",
+                                                onInvalid: (event) => {
+                                                    event.target.setCustomValidity('فرمت شماره ی وارد شده صحیح نمی باشد!');
+                                                },
+                                                onChange: (event) => {
+                                                    event.target.setCustomValidity('');
+                                                }
                                             }}
 
                                             // label={translate('ra.auth.username')}

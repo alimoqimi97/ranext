@@ -1,27 +1,40 @@
-import * as React from 'react';
-import {TextField} from '@material-ui/core';
-
-
-const SamaControlTextField = () => {
+import React from "react";
+import ReactDOM from "react-dom";
+import TextField from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
+const styles = {
+    underline: {
+        "&:before": {
+            borderBottom: "1px solid #a1b2a9"
+        },
+        "&:hover:not($disabled):not($focused):not($error):before": {
+            borderBottom: "1px solid #65bc69"
+        },
+        "&:after": {
+            borderBottom: "1px solid #c29f41"
+        }
+    },
+    disabled: {},
+    focused: {},
+    error: {}
+};
+function SamaCntrlTextField({ classes, err , tch , hlpTxt , input: { ...inputProps } , ...props  }) {
     return (
-        <TextField
-        error={!!(touched && error)}
-        className={`${styles.iranYekanFont} ${styles.txtFieldFocus}`}
-        inputProps={{
-            className: `${styles.iranYekanFont} ${styles.samaDirtyColor} ${styles.samaBold} ${styles.inputLtrDirection} `,
-            // pattern: "(0|\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
-            type: 'tel',
-        }}
+        <div>
+            <TextField
+                InputProps={{ classes }}
+                error={err}
+                className={`${styles.iranYekanFont} ${styles.txtFieldFocus}`}
 
-        style={{
-            borderColor: "green",
-        }}
+                helperText={hlpTxt}
 
-        // helperText={touched && error}
-
-        {...inputProps}
-        {...props}
-        fullWidth
-    />
+                {...inputProps}
+                {...props}
+                fullWidth
+            />
+        </div>
     );
 }
+const SamaControlTextField = withStyles(styles)(SamaCntrlTextField);
+
+export default SamaControlTextField;
