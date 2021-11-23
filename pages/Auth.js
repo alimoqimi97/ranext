@@ -1,7 +1,3 @@
-// export const httpClient = () => {
-//     const { token } = JSON.parse(localStorage.getItem('auth')) || {};
-//     return { Authorization: `Bearer ${token}` };
-//   };
   
 //   export const authProvider = {
 //     // authentication

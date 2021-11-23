@@ -1,34 +1,21 @@
 import * as React from "react";
-import { Admin, Resource, ListGuesser } from 'react-admin';
+import { Admin, Resource } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import { UsersList } from '../users/users.js';
 import { PostList } from "../posts/posts.js";
 import authProvider from '../../pages/Auth.js';
 import PostIcon from '@material-ui/icons/Book';
 import UserIcon from '@material-ui/icons/Group';
-// import LoginPage from '../../components/LoginPage/LoginPage.jsx';
-import ImprovedLoginPage from '../../components/LoginPage/ImprovedLoginPage.js';
-
-
-//      ----------under testing part-----------         //
+import ImprovedLoginPage from '../ImprovedLoginPage/ImprovedLoginPage.js';
 import { create } from "jss";
 import rtl from "jss-rtl";
 import {
     StylesProvider,
-    jssPreset,
-    ThemeProvider,
-    createTheme
+    jssPreset
 } from "@material-ui/core/styles";
 
 // configure jss.
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-
-// create rtl(right to left) theme.
-const rtlTheme = createTheme({ direction: "rtl" });
-
-//              -----------------------                 //
-
-
 
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
 

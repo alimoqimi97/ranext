@@ -1,0 +1,30 @@
+
+@font-face {
+    font-family: "IranYekan";
+    src: url("../../../public/iran.woff") format("woff");
+}
+
+
+
+@mixin iranYekanFnt {
+    font-family: "IranYekan" !important;
+}
+
+@mixin samacontrolDirtyColor {
+    color: #5a5b47 !important;
+}
+
+@mixin samacontrolBold {
+    font-weight: 600 !important;
+}
+
+@mixin inputLTRDirection {
+    direction: ltr;
+}
+
+.inputStyle {
+    @include iranYekanFnt();
+    @include samacontrolDirtyColor();
+    @include samacontrolBold();
+    @include inputLTRDirection();
+}

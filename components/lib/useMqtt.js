@@ -54,8 +54,7 @@ function useMqtt({
         client.end()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }
 
-export default useMqtt
+export default useMqtt;
