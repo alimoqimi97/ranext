@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic';
+import RightToLeft from '../components/RightToLeft/RightToLeft.js';
+
 
 
 export default function Home() {
@@ -14,13 +16,14 @@ export default function Home() {
         <link rel="manifest" href="../public/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <AdminPanel />
+      <RightToLeft>
+        <AdminDashboard />
+      </RightToLeft>
     </div>
   );
 }
 
-const AdminPanel = dynamic(() => import('../components/admin-dashboard/AdminDashboard.js'), {
+const AdminDashboard = dynamic(() => import('../components/admin-dashboard/AdminDashboard.js'), {
   ssr: false,
 });
-
 

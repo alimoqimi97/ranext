@@ -7,33 +7,33 @@ import authProvider from '../../pages/Auth.js';
 import PostIcon from '@material-ui/icons/Book';
 import UserIcon from '@material-ui/icons/Group';
 import ImprovedLoginPage from '../ImprovedLoginPage/ImprovedLoginPage.js';
-import { create } from "jss";
-import rtl from "jss-rtl";
-import {
-    StylesProvider,
-    jssPreset
-} from "@material-ui/core/styles";
+import polyglotI18nProvider from 'ra-i18n-polyglot';
+import { useTranslate } from 'react-admin';
+import TranslatedFarsiWords from '../lib/TranslatedFarsiWords.ts';
+
+const messages = {
+    'fa': TranslatedFarsiWords
+}
+
+const i18nProvider = polyglotI18nProvider(locale => messages[locale], 'fa');
 
 //  Note: <StylesProvider /> component should not be in a component that has a state 
 //  that changes and trigger re-render for performance reasons. therefore we use it here
-//  and insert <ThemeProvider> component in <ImprovedLoginPage /> component
-
+//  and insert <ThemeProvider> component in <ImprovedLoginPage /> component:
 const AdminDashboard = () => {
     return (
-        <StylesProvider jss={jss}>
-            <Admin loginPage={ImprovedLoginPage} dataProvider={dataProvider} authProvider={authProvider} >
-                <Resource name="users" list={UsersList} icon={UserIcon} />
-                <Resource name="posts" list={PostList} icon={PostIcon} />
-            </Admin>
-        </StylesProvider>
-
+        <Admin
+            loginPage={ImprovedLoginPage}
+            dataProvider={dataProvider}
+            authProvider={authProvider}
+            i18nProvider={i18nProvider}
+        >
+            <Resource name="users" list={UsersList} icon={UserIcon} />
+            <Resource name="posts" list={PostList} icon={PostIcon} />
+        </Admin>
     );
 };
 
-// configure jss.
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
-
 
 export default AdminDashboard;

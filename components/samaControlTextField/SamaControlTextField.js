@@ -16,6 +16,7 @@ const SamaCntrlTextField = ({ classes, err , tch , hlpTxt , input: { ...inputPro
                         focused: classes.labelFocused,
                     }
                 }}
+                helperText={hlpTxt}
                 {...inputProps}
                 {...props}
                 fullWidth

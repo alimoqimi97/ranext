@@ -12,7 +12,6 @@ import {
 import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { Notification, useTranslate, useLogin, useNotify } from 'react-admin';
 import SCLoginButton from '../SCLoginButton/SCLoginButton.js';
-import SamaControlTextField from '../samaControlTextField/SamaControlTextField.js';
 import scssStyles from "./scss/ImprovedLoginPage.module.scss";
 import {
     ThemeProvider,
@@ -42,13 +41,18 @@ const Login = () => {
     const validate = (values) => {
         const errors = {};
 
+        const phoneNumberPattern = /(0|\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/;
+
         if (!values.username) {
-            errors.username = translate('ra.validation.required');
+            errors.username = translate('ir.validation.required');
+        }else if(!phoneNumberPattern.test(values.username)){
+            errors.username = translate('ir.validation.wrong_phone_format');
         }
 
         if (!values.password) {
-            errors.password = translate('ra.validation.required');
+            errors.password = translate('ir.validation.required');
         }
+
         return errors;
     };
 
@@ -58,37 +62,36 @@ const Login = () => {
             validate={validate}
             render={({ handleSubmit }) => (
                 <>
-                    <form onSubmit={handleSubmit} >
-                        <div className={classes.main}>
-                            <Card className={classes.card}>
-                                <div className={classes.avatar}>
-                                    <Avatar className={classes.icon} alt="samaControl icon" src="./SCL.png" />
-                                </div>
-                                <div className={`${classes.hint} ${styles.iranYekanFont} ${styles.samaBold}`}>
-                                    <span>سماکنترل</span>
-                                </div>
+                    <div className={classes.main}>
+                        <Card className={classes.card}>
+                            <div className={classes.avatar}>
+                                <Avatar className={classes.icon} alt="samaControl icon" src="./SCL.png" />
+                            </div>
+                            <div className={`${classes.hint} ${styles.iranYekanFont} ${styles.samaBold}`}>
+                                <span>سماکنترل</span>
+                            </div>
+                            <form onSubmit={handleSubmit}>
                                 <div className={classes.form}>
                                     <div className={`${classes.input} ${styles.iranYekanFont}`} >
                                         <Field
                                             autoFocus
                                             name="username"
                                             component={renderInput}
-                                            label="شماره تلفن همراه"
+                                            label={translate('ir.auth.phone_number')}
                                             maxLength={11}
                                             type="tel"
                                             inputProps={{
                                                 className: scssStyles.inputStyle,
-                                                pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
-                                                onInvalid: (event) => {
-                                                    event.target.setCustomValidity('فرمت شماره ی وارد شده صحیح نمی باشد!');
-                                                },
-                                                onBlur: (event) => {
-                                                    if (!event.target.validity.patternMismatch) {
-                                                        event.target.setCustomValidity('');
-                                                    }
-                                                }
+                                                // pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
+                                                // onInvalid: (event) => {
+                                                //     event.target.setCustomValidity(translate('ir.validation.wrong_phone_format'));
+                                                // },
+                                                // onBlur: (event) => {
+                                                //     if (!event.target.validity.patternMismatch) {
+                                                //         event.target.setCustomValidity('');
+                                                //     }
+                                                // }
                                             }}
-
                                             disabled={loading}
                                         />
                                     </div>
@@ -96,7 +99,7 @@ const Login = () => {
                                         <Field
                                             name="password"
                                             component={renderInput}
-                                            label="رمزعبور"
+                                            label={translate('ir.auth.password')}
                                             inputProps={{
                                                 className: scssStyles.inputStyle
                                             }}
@@ -107,20 +110,18 @@ const Login = () => {
                                 </div>
                                 <CardActions className={`${classes.actions} ${styles.iranYekanFont}`}>
                                     <SCLoginButton>
-                                        ورود
+                                        {translate('ir.auth.log_in')}
                                     </SCLoginButton>
                                 </CardActions>
-                            </Card>
-                        </div>
-                    </form>
+                            </form>
+                        </Card>
+                    </div>
                     <Notification autoHideDuration={3000} />
                 </>
             )}
         />
     );
 };
-
-const rtlTheme = createTheme({ direction: "rtl" });
 
 const useStyles = makeStyles(theme => ({
     main: {
@@ -178,5 +179,8 @@ const LoginWithTheme = (props) => (
         <Login {...props} />
     </ThemeProvider>
 );
+
+const rtlTheme = createTheme({ direction: "rtl" });
+
 
 export default LoginWithTheme;
