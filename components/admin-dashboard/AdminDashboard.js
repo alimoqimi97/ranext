@@ -14,11 +14,6 @@ import {
     jssPreset
 } from "@material-ui/core/styles";
 
-// configure jss.
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-
-const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
-
 //  Note: <StylesProvider /> component should not be in a component that has a state 
 //  that changes and trigger re-render for performance reasons. therefore we use it here
 //  and insert <ThemeProvider> component in <ImprovedLoginPage /> component
@@ -34,5 +29,11 @@ const AdminDashboard = () => {
 
     );
 };
+
+// configure jss.
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+
 
 export default AdminDashboard;

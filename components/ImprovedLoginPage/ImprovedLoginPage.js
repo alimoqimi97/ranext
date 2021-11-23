@@ -14,70 +14,10 @@ import { Notification, useTranslate, useLogin, useNotify } from 'react-admin';
 import SCLoginButton from '../SCLoginButton/SCLoginButton.js';
 import SamaControlTextField from '../samaControlTextField/SamaControlTextField.js';
 import scssStyles from "./scss/ImprovedLoginPage.module.scss";
-
-//      rtl imports and configurations.     //
 import {
     ThemeProvider,
 } from "@material-ui/core/styles";
-
-const rtlTheme = createTheme({ direction: "rtl" });
-
-// const useStyles = makeStyles(theme => ({
-//     main: {
-//         display: 'flex',
-//         flexDirection: 'column',
-//         minHeight: '100vh',
-//         alignItems: 'center',
-//         justifyContent: 'flex-start',
-//         background: 'radial-gradient(circle,white,#65bc69,#31a05f)',
-//         backgroundRepeat: 'no-repeat',
-//         backgroundSize: 'cover',
-//     },
-//     card: {
-//         minWidth: 300,
-//         marginTop: '6em',
-//     },
-//     avatar: {
-//         margin: '1em',
-//         display: 'flex',
-//         justifyContent: 'center',
-//     },
-//     hint: {
-//         marginTop: '1em',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         color: "#746e6a",
-//         fontFamily: 'IranYekan'
-//     },
-//     form: {
-//         padding: '0 1em 1em 1em',
-//     },
-//     input: {
-//         marginTop: '1em',
-//     },
-//     actions: {
-//         padding: '0 1em 1em 1em',
-//     },
-//     textField: {
-//         '&:focus': {
-//             color: "#31a05f",
-//         }
-//     }
-// }));
-
-
-const renderInput = ({ meta: { touched, error } = { touched: false, error: undefined },
-    input: { ...inputProps }, ...props }) => {
-    return (
-        <SamaControlTextField
-            err={!!(touched && error)}
-            hlpTxt={touched && error}
-            tch={touched}
-            {...inputProps}
-            {...props}
-        />
-    );
-};
+import renderInput from './renderInput.js';
 
 const { Form } = withTypes();
 
@@ -179,6 +119,8 @@ const Login = () => {
         />
     );
 };
+
+const rtlTheme = createTheme({ direction: "rtl" });
 
 const useStyles = makeStyles(theme => ({
     main: {

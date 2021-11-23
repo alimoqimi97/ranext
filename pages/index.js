@@ -1,9 +1,6 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic';
 
-const AdminPanel = dynamic(() => import('../components/admin-dashboard/AdminDashboard.js'), {
-  ssr: false,
-});
 
 export default function Home() {
 
@@ -20,5 +17,10 @@ export default function Home() {
       <AdminPanel />
     </div>
   );
-
 }
+
+const AdminPanel = dynamic(() => import('../components/admin-dashboard/AdminDashboard.js'), {
+  ssr: false,
+});
+
+

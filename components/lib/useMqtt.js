@@ -16,19 +16,16 @@ function useMqtt({
     try {
       clientRef.current = options
         ? MQTT.connect(uri, options)
-        : MQTT.connect(uri)
+        : MQTT.connect(uri);
     } catch (error) {
-      console.error('error', error)
+      console.error('error', error);
     }
 
-    const client = clientRef.current
+    const client = clientRef.current;
     
-    console.log('test');
-    console.log(topicHandlers[0].topic);
-    client.subscribe(topicHandlers[0].topic)
+    client.subscribe(topicHandlers[0].topic);
     
     client.on('message', (topic, rawPayload, packet) => {
-      console.log(topic);
       const th = topicHandlers[0];
 
       let payload
