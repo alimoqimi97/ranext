@@ -5,9 +5,8 @@ const WithThemeTextFieldRenderProps = ({ meta: { touched, error } = { touched: f
     input: { ...inputProps }, ...props }) => {
     return (
         <WithThemeTextField
-            err={!!(touched && error)}
-            hlpTxt={touched && error}
-            tch={touched}
+            isInErrorState={!!(touched && error)}
+            errorMessage={touched && error}
             {...inputProps}
             {...props}
         />

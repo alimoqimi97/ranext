@@ -10,20 +10,16 @@ import {
     CardActions,
 } from '@material-ui/core';
 import { createTheme, makeStyles } from '@material-ui/core/styles';
+import {ThemeProvider} from "@material-ui/core/styles";
 import { Notification, useTranslate, useLogin, useNotify } from 'react-admin';
 import WithThemeLoginButton from '../WithThemeLoginButton/WithThemeLoginButton.js';
-import scssStyles from "./scss/ImprovedLoginPage.module.scss";
-import {
-    ThemeProvider,
-} from "@material-ui/core/styles";
-import CustomizedTextFieldRenderProps from './WithThemeTextFieldRenderProps.js';
-
-const { Form } = withTypes();
+import loginPageTheme from "./scss/LoginPage.module.scss";
+import WithThemeTextFieldRenderProps from './WithThemeTextFieldRenderProps.js';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
     const translate = useTranslate();
-    const classes = useStyles();
+    const loginPageStyleClasses = useStyles();
     const notify = useNotify();
     const login = useLogin();
     const location = useLocation();
@@ -38,22 +34,24 @@ const Login = () => {
     };
 
 
-    const validate = (values) => {
-        const errors = {};
+    const validate = (textFieldsValues) => {
+        const errorMessages = {};
 
         const phoneNumberPattern = /(0|\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/;
 
-        if (!values.username) {
-            errors.username = translate('ir.validation.required');
-        }else if(!phoneNumberPattern.test(values.username)){
-            errors.username = translate('ir.validation.wrong_phone_format');
+        if (!textFieldsValues.username) {
+            errorMessages.username = translate('ir.validation.required');
+
+        }else if(!phoneNumberPattern.test(textFieldsValues.username)){
+
+            errorMessages.username = translate('ir.validation.wrong_phone_format');
         }
 
-        if (!values.password) {
-            errors.password = translate('ir.validation.required');
+        if (!textFieldsValues.password) {
+            errorMessages.password = translate('ir.validation.required');
         }
 
-        return errors;
+        return errorMessages;
     };
 
     return (
@@ -62,44 +60,44 @@ const Login = () => {
             validate={validate}
             render={({ handleSubmit }) => (
                 <>
-                    <div className={classes.main}>
-                        <Card className={classes.card}>
-                            <div className={classes.avatar}>
-                                <Avatar className={classes.icon} alt="samaControl icon" src="./samacontrolLogo.png" />
+                    <div className={loginPageStyleClasses.main}>
+                        <Card className={loginPageStyleClasses.card}>
+                            <div className={loginPageStyleClasses.avatar}>
+                                <Avatar className={loginPageStyleClasses.icon} alt="samaControl icon" src="./samacontrolLogo.png" />
                             </div>
-                            <div className={`${classes.hint} ${loginPageStyles.iranYekanFont} ${loginPageStyles.samaBold}`}>
+                            <div className={`${loginPageStyleClasses.hint} ${loginPageStyles.iranYekanFont} ${loginPageStyles.samaBold}`}>
                                 <span>{translate('ir.labels.samacontrol_name')}</span>
                             </div>
                             <form onSubmit={handleSubmit}>
-                                <div className={classes.form}>
-                                    <div className={`${classes.input} ${loginPageStyles.iranYekanFont}`} >
+                                <div className={loginPageStyleClasses.form}>
+                                    <div className={`${loginPageStyleClasses.input} ${loginPageStyles.iranYekanFont}`} >
                                         <Field
                                             autoFocus
                                             name="username"
-                                            component={CustomizedTextFieldRenderProps}
+                                            component={WithThemeTextFieldRenderProps}
                                             label={translate('ir.auth.phone_number')}
                                             maxLength={11}
                                             type="tel"
                                             inputProps={{
-                                                className: scssStyles.inputStyle,
+                                                className: loginPageTheme.inputStyle,
                                             }}
                                             disabled={loading}
                                         />
                                     </div>
-                                    <div className={classes.input} >
+                                    <div className={loginPageStyleClasses.input} >
                                         <Field
                                             name="password"
-                                            component={CustomizedTextFieldRenderProps}
+                                            component={WithThemeTextFieldRenderProps}
                                             label={translate('ir.auth.password')}
                                             inputProps={{
-                                                className: scssStyles.inputStyle
+                                                className: loginPageTheme.inputStyle
                                             }}
                                             type="password"
                                             disabled={loading}
                                         />
                                     </div>
                                 </div>
-                                <CardActions className={`${classes.actions} ${loginPageStyles.iranYekanFont}`}>
+                                <CardActions className={`${loginPageStyleClasses.actions} ${loginPageStyles.iranYekanFont}`}>
                                     <WithThemeLoginButton>
                                         {translate('ir.auth.log_in')}
                                     </WithThemeLoginButton>
@@ -171,7 +169,7 @@ const LoginWithTheme = (props) => (
     </ThemeProvider>
 );
 
+const { Form } = withTypes();
 const rtlTheme = createTheme({ direction: "rtl" });
-
 
 export default LoginWithTheme;

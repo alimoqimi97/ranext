@@ -10,6 +10,7 @@ import LoginPage from '../LoginPage/LoginPage.js';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import { useTranslate } from 'react-admin';
 import TranslatedFarsiWords from '../../js/TranslatedFarsiWords.ts';
+import ResourcesNames from "./ResourcesNames.js";
 
 const farsiWords = {
     'fa': TranslatedFarsiWords
@@ -29,7 +30,7 @@ const AdminDashboard = () => {
                 i18nProvider={translationProvider}
             >
                 <Resource
-                    name="users"
+                    name={ResourcesNames.USERS}
                     list={MqttFilledList}
                     icon={UserIcon}
                     options={{
@@ -37,7 +38,7 @@ const AdminDashboard = () => {
                     }}
                 />
                 <Resource
-                    name="posts"
+                    name={ResourcesNames.POSTS}
                     list={PostList}
                     icon={PostIcon}
                     options={{

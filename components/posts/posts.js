@@ -12,7 +12,6 @@ export const PostList = props => {
                 <SimpleList
                     primaryText={record => record.id}
                     secondaryText={record => record.title}
-                    // tertiaryText={record => record.body}
                 />
             ) : (
             <Datagrid rowClick="edit">

@@ -2,8 +2,6 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic';
 import RightToLeft from '../components/RightToLeft/RightToLeft.js';
 
-
-
 export default function Home() {
 
   return (
@@ -16,9 +14,9 @@ export default function Home() {
         <link rel="manifest" href="../public/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <RightToLeft> */}
+      <RightToLeft>
         <AdminDashboard />
-      {/* </RightToLeft> */}
+      </RightToLeft>
     </div>
   );
 }

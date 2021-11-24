@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core';
 import Button from '@mui/material/Button';
 
 const WithThemeLoginButton = (props) => {
-    const classes = useStyles();
+    const loginButtonStyleClasses = useStyles();
 
     return (
         <Button
-            className={classes.root}
+            className={loginButtonStyleClasses.root}
             variant="contained"
             type="submit"
             fullWidth

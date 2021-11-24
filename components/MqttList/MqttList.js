@@ -6,6 +6,8 @@ const MqttList = ({ listContent }) => {
     let contentCopy = [...listContent];
     let reversedContent = contentCopy.reverse();
 
+    console.log(listConfig);
+
     const Row = ({ index, style }) => {
         return (
             <div style={style}>
