@@ -16,9 +16,9 @@ export default function Home() {
         <link rel="manifest" href="../public/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <RightToLeft>
+      {/* <RightToLeft> */}
         <AdminDashboard />
-      </RightToLeft>
+      {/* </RightToLeft> */}
     </div>
   );
 }

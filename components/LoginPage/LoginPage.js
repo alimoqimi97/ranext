@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Field, withTypes } from 'react-final-form';
 import { useLocation } from 'react-router-dom';
-import styles from './ImprovedLoginPage.module.css';
+import loginPageStyles from './LoginPage.module.css';
 import {
     Avatar,
     Card,
@@ -11,12 +11,12 @@ import {
 } from '@material-ui/core';
 import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { Notification, useTranslate, useLogin, useNotify } from 'react-admin';
-import SCLoginButton from '../SCLoginButton/SCLoginButton.js';
+import WithThemeLoginButton from '../WithThemeLoginButton/WithThemeLoginButton.js';
 import scssStyles from "./scss/ImprovedLoginPage.module.scss";
 import {
     ThemeProvider,
 } from "@material-ui/core/styles";
-import renderInput from './renderInput.js';
+import CustomizedTextFieldRenderProps from './WithThemeTextFieldRenderProps.js';
 
 const { Form } = withTypes();
 
@@ -65,32 +65,23 @@ const Login = () => {
                     <div className={classes.main}>
                         <Card className={classes.card}>
                             <div className={classes.avatar}>
-                                <Avatar className={classes.icon} alt="samaControl icon" src="./SCL.png" />
+                                <Avatar className={classes.icon} alt="samaControl icon" src="./samacontrolLogo.png" />
                             </div>
-                            <div className={`${classes.hint} ${styles.iranYekanFont} ${styles.samaBold}`}>
-                                <span>سماکنترل</span>
+                            <div className={`${classes.hint} ${loginPageStyles.iranYekanFont} ${loginPageStyles.samaBold}`}>
+                                <span>{translate('ir.labels.samacontrol_name')}</span>
                             </div>
                             <form onSubmit={handleSubmit}>
                                 <div className={classes.form}>
-                                    <div className={`${classes.input} ${styles.iranYekanFont}`} >
+                                    <div className={`${classes.input} ${loginPageStyles.iranYekanFont}`} >
                                         <Field
                                             autoFocus
                                             name="username"
-                                            component={renderInput}
+                                            component={CustomizedTextFieldRenderProps}
                                             label={translate('ir.auth.phone_number')}
                                             maxLength={11}
                                             type="tel"
                                             inputProps={{
                                                 className: scssStyles.inputStyle,
-                                                // pattern: "(0|\\+98)?([ ]|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
-                                                // onInvalid: (event) => {
-                                                //     event.target.setCustomValidity(translate('ir.validation.wrong_phone_format'));
-                                                // },
-                                                // onBlur: (event) => {
-                                                //     if (!event.target.validity.patternMismatch) {
-                                                //         event.target.setCustomValidity('');
-                                                //     }
-                                                // }
                                             }}
                                             disabled={loading}
                                         />
@@ -98,7 +89,7 @@ const Login = () => {
                                     <div className={classes.input} >
                                         <Field
                                             name="password"
-                                            component={renderInput}
+                                            component={CustomizedTextFieldRenderProps}
                                             label={translate('ir.auth.password')}
                                             inputProps={{
                                                 className: scssStyles.inputStyle
@@ -108,10 +99,10 @@ const Login = () => {
                                         />
                                     </div>
                                 </div>
-                                <CardActions className={`${classes.actions} ${styles.iranYekanFont}`}>
-                                    <SCLoginButton>
+                                <CardActions className={`${classes.actions} ${loginPageStyles.iranYekanFont}`}>
+                                    <WithThemeLoginButton>
                                         {translate('ir.auth.log_in')}
-                                    </SCLoginButton>
+                                    </WithThemeLoginButton>
                                 </CardActions>
                             </form>
                         </Card>

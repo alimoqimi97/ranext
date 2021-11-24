@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { useMediaQuery } from '@material-ui/core';
-import useMqtt from '../lib/useMqtt';
+import useMqtt from '../../js/useMqtt.js';
 import { useState, useRef } from 'react';
-import MqttList from '../react-window-table/ReactWindowTable.js';
+import MqttList from '../MqttList/MqttList.js';
 
-
-export const UsersList = props => {
+export const MqttFilledList = props => {
 
     const [incommingMessages, setIncommingMessages] = useState([]);
     const addMessage = (message) => {
@@ -14,7 +12,6 @@ export const UsersList = props => {
     const clearMessages = () => {
         setIncommingMessages(() => []);
     }
-    let indx = 0;
 
     const incommingMessageHandlers = useRef([
         {
@@ -42,10 +39,9 @@ export const UsersList = props => {
         onConnectedHandler: (client) => setMqttClient(client)
     });
 
-    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
         <div>
-            <MqttList contentArray={incommingMessages} />
+            <MqttList listContent={incommingMessages} />
         </div>
     );
 };

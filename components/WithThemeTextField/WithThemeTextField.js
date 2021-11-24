@@ -1,15 +1,15 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import stls from './SamaControlTextField.module.css';
+import WithThemeTextFieldStyles from './WithThemeTextField.module.css';
 import { withStyles } from "@material-ui/core/styles";
 
-const SamaCntrlTextField = ({ classes, err , tch , hlpTxt , input: { ...inputProps } , ...props }) => {
+const BasicTextField = ({ classes, err , tch , hlpTxt , input: { ...inputProps } , ...props }) => {
     return (
         <div>
             <TextField
                 InputProps={{ classes }}
                 error={err}
-                className={`${stls.iranYekanFont} ${stls.txtFieldFocus}`}
+                className={`${WithThemeTextFieldStyles.iranYekanFont} ${WithThemeTextFieldStyles.txtFieldFocus}`}
                 InputLabelProps={{
                     classes: {
                         root: classes.labelRoot,
@@ -52,6 +52,6 @@ const styles = {
     // }
 };
 
-const SamaControlTextField = withStyles(styles)(SamaCntrlTextField);
+const WithThemeTextField = withStyles(styles)(BasicTextField);
 
-export default SamaControlTextField;
+export default WithThemeTextField;

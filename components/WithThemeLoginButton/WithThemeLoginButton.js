@@ -2,7 +2,7 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core';
 import Button from '@mui/material/Button';
 
-const SCLoginButton = (props) => {
+const WithThemeLoginButton = (props) => {
     const classes = useStyles();
 
     return (
@@ -29,5 +29,5 @@ const useStyles = makeStyles({
 });
 
 
-export default SCLoginButton;
+export default WithThemeLoginButton;
 

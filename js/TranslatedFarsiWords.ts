@@ -320,7 +320,9 @@ const farsiMessages: TranslationMessages = {
         labels: {
             users: 'کاربران',
             posts: 'پست ها',
-        }
+            samacontrol_name: 'سماکنترل',
+        },
+
     }
 };
 
